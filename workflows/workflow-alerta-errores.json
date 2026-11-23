@@ -1,0 +1,68 @@
+{
+  "name": "FINAL | Alerta de errores",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6c0673b7-2e86-4bee-8f23-9b64a50f2018",
+      "name": "Error en el asistente"
+    },
+    {
+      "parameters": {
+        "sendTo": "mati@nuevaideamkt.com",
+        "subject": "=🚨 Falló el asistente: {{ $json.workflow.name }}",
+        "message": "=Falló una ejecución del asistente y puede haber un cliente sin atender.<br><br> <b>Nodo que falló:</b> {{ $json.execution.lastNodeExecuted }}<br> <b>Error:</b> {{ $json.execution.error.message }}<br> <b>Ver la ejecución:</b> {{ $json.execution.url }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "5041a9fe-80bc-490f-abee-bfd515963bf2",
+      "name": "Avisar falla",
+      "webhookId": "0db6679d-d034-403a-a145-f7c4083db9e6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MH7PvI0wRrtsnpEE",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error en el asistente": {
+      "main": [
+        [
+          {
+            "node": "Avisar falla",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "73af4f5c-6b55-45a1-9560-ea01ca203fc4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c5f7293badccddf02946c9a75d757be9339e1cfc3a8fdee8cb7ab6dfe43956b2"
+  },
+  "nodeGroups": [],
+  "id": "Q9lCHKKpJkT4cJ5b",
+  "tags": []
+}
